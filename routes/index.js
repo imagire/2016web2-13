@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
     var TYPES = require('tedious').TYPES;  
   
     function executeStatement() {  
-        request = new Request("SELECT TOP(10) CustomerID, CompanyName FROM SalesLT.Customer;", function(err) {
+        request = new Request("SELECT TOP(10) CompanyName FROM SalesLT.Customer;", function(err) {
         if (err) {  
             console.log(err);}  
         });  
@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
         request.on('doneProc', function (rowCount, more, returnStatus, rows) {
         result += "</table>";
         console.log(result +  '######');  
-        res.render('index', {title:"my first DB access", message:result});
+        res.render('index', {title:"‚Í‚¶‚ß‚Ä‚Ì DB", message:result});
         });  
         connection.execSql(request);  
     }
