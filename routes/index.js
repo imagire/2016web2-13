@@ -9,21 +9,22 @@ var config = {
     // If you are on Microsoft Azure, you need this:  
     options: {encrypt: true, database: 'AdventureWorks'}  
 };  
-var message;
-var connection = new Connection(config);  
-connection.on('connect', function(err) {  
-// If no error, then good to proceed.  
-	if(err){
-		message = err;
-    }else {  
-		message = "Connected";
-    }  
-    executeStatement();  
-});  
 
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+	var message;
+	var connection = new Connection(config);  
+	connection.on('connect', function(err) {  
+	// If no error, then good to proceed.  
+		if(err){
+			message = err;
+	    }else {  
+			message = "Connected";
+	    }  
+	    executeStatement();  
+	});  
+
   res.render('index', { title: message });
 });
 
