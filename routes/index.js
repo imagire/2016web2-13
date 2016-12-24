@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
     var TYPES = require('tedious').TYPES;  
   
     function executeStatement() {  
-        request = new Request("SELECT TOP(10) c.CustomerID, c.CompanyName FROM SalesLT.Customer;", function(err) {
+        request = new Request("SELECT TOP(10) CustomerID, CompanyName FROM SalesLT.Customer;", function(err) {
         if (err) {  
             console.log(err);}  
         });  
