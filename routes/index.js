@@ -18,14 +18,12 @@ router.get('/', function(req, res, next) {
   connection.on('connect', function(err) {  
     // If no error, then good to proceed.  
     if(err){
-      message = "err";
+  res.render('index', { title: 'err' });
     }else {  
-      message = "Connected";
+  res.render('index', { title: 'Connected' });
     }  
     executeStatement();  
   });  
-
-  res.render('index', { title: message });
 });
 
 module.exports = router;
