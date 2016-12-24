@@ -1,15 +1,6 @@
 var express = require('express');
 var router = express.Router();
 
-var Connection = require('tedious').Connection;  
-var config = {  
-    userName: 'imagire',  
-    password: 'P@ssword',  
-    server: '2016web2-imagire.database.windows.net',  
-    // If you are on Microsoft Azure, you need this:  
-    options: {encrypt: true, database: 'AdventureWorks'}  
-};  
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -22,9 +13,13 @@ router.get('/', function(req, res, next) {
         options: {encrypt: true, database: 'AdventureWorks'}  
     };  
     var connection = new Connection(config);  
-    connection.on('connect', function(err) {  
+    connection.on('connect', function(err) {
+      if(err){
+        res.render('index', {title: err});
+      }else{
         // If no error, then good to proceed.  
         console.log("Connected");  
+        res.render('index', {title: 'Connected'});
         executeStatement();  
     });  
   
