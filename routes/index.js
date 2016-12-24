@@ -27,29 +27,25 @@ router.get('/', function(req, res, next) {
     var TYPES = require('tedious').TYPES;  
   
     function executeStatement() {  
-        request = new Request("SELECT TOP 10 c.CustomerID, c.CompanyName,COUNT(soh.SalesOrderID) AS OrderCount FROM SalesLT.Customer AS c LEFT OUTER JOIN SalesLT.SalesOrderHeader AS soh ON c.CustomerID = soh.CustomerID GROUP BY c.CustomerID, c.CompanyName ORDER BY OrderCount DESC;", function(err) {  
+        request = new Request("SELECT c.CustomerID, c.CompanyName,COUNT(soh.SalesOrderID) AS OrderCount FROM SalesLT.Customer AS c LEFT OUTER JOIN SalesLT.SalesOrderHeader AS soh ON c.CustomerID = soh.CustomerID GROUP BY c.CustomerID, c.CompanyName ORDER BY OrderCount DESC;", function(err) {  
         if (err) {  
             console.log(err);}  
         });  
-        var result = '<table>';  
-        request.on('row', function(columns) {
-            result += '<tr>';
+        var result = "";  
+        request.on('row', function(columns) {  
             columns.forEach(function(column) {  
               if (column.value === null) {  
                 console.log('NULL');  
               } else {  
-                result+= '<td>' + column.value + '</td>';  
+                result+= column.value + " ";  
               }  
-            });
-            result += '</tr>';
-//            console.log(result);
-//            result ="";  
+            });  
+            console.log(result);  
+            result ="";  
         });  
   
         request.on('done', function(rowCount, more) {  
-          console.log('####' + rowCount + ' rows returned');  
-          result += "</table>";
-          res.render('index', {title:'DB connected', message:result });
+        console.log(rowCount + ' rows returned');  
         });  
         connection.execSql(request);  
     }
