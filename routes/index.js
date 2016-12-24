@@ -19,7 +19,6 @@ router.get('/', function(req, res, next) {
       }else{
         // If no error, then good to proceed.  
         console.log("Connected");  
-        res.render('index', {title: 'Connected'});
         executeStatement();  
       }
     }); 
@@ -49,7 +48,9 @@ router.get('/', function(req, res, next) {
         console.log(rowCount + ' rows returned');  
         });  
         connection.execSql(request);  
-    }  
+        
+        res.render('index', {title: result });
+    }
 });
 
 module.exports = router;
