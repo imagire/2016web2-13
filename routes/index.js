@@ -12,7 +12,12 @@ var config = {
 var connection = new Connection(config);  
 connection.on('connect', function(err) {  
 // If no error, then good to proceed.  
-    res.send("Connected");  
+	if(err){
+        res.send(err);
+    }else {  
+        res.send("Connected");
+    }  
+    executeStatement();  
 });  
 
 
