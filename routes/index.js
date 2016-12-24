@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
               }  
             });  
             console.log(result);  
-            result ="";  
+//            result ="";  
         });  
   
         request.on('done', function(rowCount, more) {  
@@ -50,6 +50,7 @@ router.get('/', function(req, res, next) {
         connection.execSql(request);  
         
         res.render('index', {title: result });
+            result ="";  
     }
 });
 
