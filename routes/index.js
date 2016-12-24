@@ -44,8 +44,8 @@ router.get('/', function(req, res, next) {
             result ="";  
         });  
   
-        request.on('done', function(rowCount, more) {  
-        console.log(rowCount + ' rows returned######');  
+        request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+        console.log(rows + ' returned######');  
         });  
         connection.execSql(request);  
     }
