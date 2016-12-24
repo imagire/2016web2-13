@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
         request.on('doneProc', function (rowCount, more, returnStatus, rows) {
         result += "</table>";
         console.log(result +  '######');  
-        res.render('index', {title:"�͂��߂Ă� DB", message:result});
+        res.render('index', {title:"はじめての DB", message:result});
         });  
         connection.execSql(request);  
     }
