@@ -24,7 +24,7 @@ connection.on('connect', function(err) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'message' });
+  res.render('index', { title: message });
 });
 
 module.exports = router;
