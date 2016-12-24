@@ -9,13 +9,14 @@ var config = {
     // If you are on Microsoft Azure, you need this:  
     options: {encrypt: true, database: 'AdventureWorks'}  
 };  
+var message;
 var connection = new Connection(config);  
 connection.on('connect', function(err) {  
 // If no error, then good to proceed.  
 	if(err){
-        res.send(err);
+		message = err;
     }else {  
-        res.send("Connected");
+		message = "Connected";
     }  
     executeStatement();  
 });  
@@ -23,7 +24,7 @@ connection.on('connect', function(err) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'message' });
 });
 
 module.exports = router;
