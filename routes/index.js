@@ -48,8 +48,8 @@ router.get('/', function(req, res, next) {
   
         request.on('doneProc', function (rowCount, more, returnStatus, rows) {
         result += "</table>";
-        render('index', {title:"DB access", message:result});
-        console.log(rows + ' returned######');  
+        console.log(result +  ######');  
+        render('index', {title:"my first DB access", message:result});
         });  
         connection.execSql(request);  
     }
