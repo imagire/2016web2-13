@@ -31,20 +31,24 @@ router.get('/', function(req, res, next) {
         if (err) {  
             console.log(err);}  
         });  
-        var result = "";  
+        var result = '<table>';  
         request.on('row', function(columns) {  
+          result += '<tr>'; 
             columns.forEach(function(column) {  
               if (column.value === null) {  
                 console.log('NULL');  
               } else {  
-                result+= column.value + " ";  
+                result+= '<td>' + column.value + '</td>';  
               }  
-            });  
-            console.log(result);  
-            result ="";  
+          result += '</tr>'; 
+            }); 
+//            console.log(result);  
+//            result ="";  
         });  
   
         request.on('doneProc', function (rowCount, more, returnStatus, rows) {
+        result += "</table>";
+        render('index', {title:"DB access", message:result});
         console.log(rows + ' returned######');  
         });  
         connection.execSql(request);  
