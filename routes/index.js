@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
         password: 'P@ssword',  
         server: '2016web2-imagire.database.windows.net',  
         // When you connect to Azure SQL Database, you need these next options.  
-        options: {encrypt: true, database: 'AdventureWorks'}  
+        options: {encrypt: true, database: '2016web2-13'}  
     };  
     var connection = new Connection(config);  
     connection.on('connect', function(err) {
