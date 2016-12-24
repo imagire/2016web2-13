@@ -41,16 +41,14 @@ router.get('/', function(req, res, next) {
               }  
             });  
             console.log(result);  
-//            result ="";  
+            result ="";  
         });  
   
         request.on('done', function(rowCount, more) {  
-        console.log(rowCount + ' rows returned');  
+          console.log(rowCount + ' rows returned');  
+          res.render('index', {title: rowCount });
         });  
         connection.execSql(request);  
-        
-        res.render('index', {title: result });
-            result ="";  
     }
 });
 
